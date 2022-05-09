@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Что вам нужно и где вы находитесь?</h1>
+<form action="{{ url_for('find') }}" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.book.label }}<br>
+        {{ form.book(class="form-control") }}<br>
+        {% for error in form.book.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.place.label }}<br>
+        {{ form.place(class="form-control") }}<br>
+        {% for error in form.place.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}
